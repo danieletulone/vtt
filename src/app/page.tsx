@@ -91,8 +91,10 @@ export default function Home() {
     setCopyFeedback(null);
     try {
       const ffmpeg = ffmpegRef.current;
-      await ffmpeg.writeFile("input.mp4", await fetchFile(videoFile));
-      await ffmpeg.exec(["-i", "input.mp4", "-vn", "-acodec", "mp3", "output.mp3"]);
+      const ext = videoFile.name.split('.').pop() || 'mp4';
+      const inputName = `input.${ext}`;
+      await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+      await ffmpeg.exec(["-i", inputName, "-vn", "-acodec", "mp3", "output.mp3"]);
       const data = await ffmpeg.readFile("output.mp3");
       const blob = new Blob([data], { type: "audio/mp3" });
       setLoadingMsg("Invio audio a Deepgram e trascrizione in corso...");
