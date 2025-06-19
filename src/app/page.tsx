@@ -103,8 +103,8 @@ export default function Home() {
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { result, error } = await deepgram.listen.prerecorded.transcribeFile(blob as any, {
-        model: "nova-2",
-        language: 'it',
+        model: "nova-3",
+        language: 'multi',
         diarize: true,
         punctuate: true,
         utterances: true,
