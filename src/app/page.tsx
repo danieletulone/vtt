@@ -97,7 +97,7 @@ export default function Home() {
       const blob = new Blob([data], { type: "audio/mp3" });
       setLoadingMsg("Invio audio a Deepgram e trascrizione in corso...");
       const deepgram = createClient("proxy", {
-        global: { fetch: { options: { proxy: { url: "http://deepgram-proxy.zeurone.it" } } } },
+        global: { fetch: { options: { proxy: { url: "https://deepgram-proxy.zeurone.it" } } } },
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { result, error } = await deepgram.listen.prerecorded.transcribeFile(blob as any, {
